@@ -25,21 +25,21 @@ export default function MainFilters({
       <div className="flex items-center justify-between">
         <div className="flex gap-2">
           <button
-            className={\`px-6 py-2 rounded-lg font-semibold border transition
-              \${tab === "all"
+            className={`px-6 py-2 rounded-lg font-semibold border transition
+              ${tab === "all"
                 ? "bg-blue-500 text-white border-blue-500 shadow"
                 : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-transparent hover:bg-blue-100 dark:hover:bg-blue-900"}
-            \`}
+            `}
             onClick={() => handleTab("all")}
           >
             All
           </button>
           <button
-            className={\`px-6 py-2 rounded-lg font-semibold border transition
-              \${tab === "favorites"
+            className={`px-6 py-2 rounded-lg font-semibold border transition
+              ${tab === "favorites"
                 ? "bg-blue-500 text-white border-blue-500 shadow"
                 : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-200 border-transparent hover:bg-blue-100 dark:hover:bg-blue-900"}
-            \`}
+            `}
             onClick={() => handleTab("favorites")}
           >
             Favorites
@@ -57,9 +57,9 @@ export default function MainFilters({
           <button
             key={s}
             onClick={() => handleSubtab(s)}
-            className={\`pb-2 px-2 font-medium text-gray-700 dark:text-gray-200 transition relative
-              \${subtab === s ? "border-b-2 border-blue-500 text-blue-600 dark:text-blue-400" : "hover:text-blue-500"}
-            \`}
+            className={`pb-2 px-2 font-medium text-gray-700 dark:text-gray-200 transition relative
+              ${subtab === s ? "border-b-2 border-blue-500 text-blue-600 dark:text-blue-400" : "hover:text-blue-500"}
+            `}
             style={{ marginBottom: "-1px" }}
           >
             {s.charAt(0).toUpperCase() + s.slice(1)}
