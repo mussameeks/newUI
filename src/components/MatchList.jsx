@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { getFixtures } from "../api/football";
 import SideDrawer from "./SideDrawer";
 
-// Helper to convert subtab to status
 const statusMap = {
   live: "LIVE",
   finished: "FT",
@@ -17,10 +16,14 @@ export default function MatchList({ date, subtab, league, country, tab }) {
 
   useEffect(() => {
     setLoading(true);
+    // "All" tab: ignore country/league filters
+    const apiCountry = tab === "all" ? undefined : country;
+    const apiLeague = tab === "all" ? undefined : league;
+
     getFixtures({
       date,
-      league: league || undefined,
-      country: country || undefined,
+      league: apiLeague,
+      country: apiCountry,
       status: statusMap[subtab] || undefined,
     })
       .then(res => {
@@ -28,9 +31,8 @@ export default function MatchList({ date, subtab, league, country, tab }) {
       })
       .catch(() => setMatches([]))
       .finally(() => setLoading(false));
-  }, [date, league, country, subtab]);
+  }, [date, league, country, subtab, tab]);
 
-  // Simple favorites using localStorage (stub)
   const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
   const toggleFav = (fixtureId) => {
     let newFavs;
@@ -40,7 +42,7 @@ export default function MatchList({ date, subtab, league, country, tab }) {
       newFavs = [...favorites, fixtureId];
     }
     localStorage.setItem("favorites", JSON.stringify(newFavs));
-    window.dispatchEvent(new Event("storage")); // so the UI updates
+    window.dispatchEvent(new Event("storage"));
   };
 
   const filteredMatches = tab === "favorites"
