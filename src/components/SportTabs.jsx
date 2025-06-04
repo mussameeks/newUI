@@ -10,7 +10,6 @@ const sports = [
 ];
 
 export default function SportTabs({ activeSport, onChange }) {
-  // If you want to control from above, use props; else use state locally:
   const [selected, setSelected] = useState(activeSport || "football");
 
   const handleClick = (key) => {

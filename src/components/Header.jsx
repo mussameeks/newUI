@@ -1,5 +1,5 @@
-import { FiMenu } from "react-icons/fi"; // For "More" menu icon
-import { FaUserCircle } from "react-icons/fa"; // For user icon
+import { FiMenu } from "react-icons/fi";
+import { FaUserCircle } from "react-icons/fa";
 
 export default function Header() {
   return (
@@ -13,7 +13,6 @@ export default function Header() {
           Twijistats
         </span>
       </div>
-      
       {/* Search Bar */}
       <div className="flex-1 max-w-lg mx-6">
         <input
@@ -22,17 +21,14 @@ export default function Header() {
           placeholder="Search teams, leagues, matches…"
         />
       </div>
-      
       {/* Right Controls */}
       <div className="flex items-center gap-4">
-        {/* "More" icon (can be a dropdown later) */}
         <button
           className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           aria-label="More"
         >
           <FiMenu className="w-6 h-6 text-gray-700 dark:text-gray-300" />
         </button>
-        {/* Sign In */}
         <button
           className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold shadow transition"
         >
