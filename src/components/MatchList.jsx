@@ -1,6 +1,6 @@
-// src/components/MatchList.jsx
+import { useState } from "react";
+import SideDrawer from "./SideDrawer";
 
-// Dummy static data to show the structure
 const matchData = [
   {
     country: "Brazil",
@@ -59,6 +59,20 @@ const matchData = [
 ];
 
 export default function MatchList() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [selectedMatch, setSelectedMatch] = useState(null);
+
+  // Combine league/country data with match for easy drawer display
+  const handleMatchClick = (match, block) => {
+    setSelectedMatch({
+      ...match,
+      league: block.league,
+      country: block.country,
+      flag: block.flag,
+    });
+    setDrawerOpen(true);
+  };
+
   return (
     <div className="max-w-2xl mx-auto mt-6 px-2">
       {matchData.map((block, i) => (
@@ -80,9 +94,10 @@ export default function MatchList() {
           {/* Match List */}
           <div>
             {block.matches.map((match, j) => (
-              <div
+              <button
                 key={j}
-                className="flex items-center justify-between px-4 py-3 border-b last:border-none border-gray-100 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-900 transition"
+                className="flex w-full items-center justify-between px-4 py-3 border-b last:border-none border-gray-100 dark:border-gray-800 hover:bg-blue-50 dark:hover:bg-gray-900 transition cursor-pointer focus:outline-none"
+                onClick={() => handleMatchClick(match, block)}
               >
                 {/* Match Time */}
                 <span className="w-14 text-gray-500 font-mono">{match.time}</span>
@@ -100,11 +115,17 @@ export default function MatchList() {
                 <span className="w-14 text-right font-bold text-lg text-blue-600 dark:text-blue-400">
                   {match.scoreA} - {match.scoreB}
                 </span>
-              </div>
+              </button>
             ))}
           </div>
         </div>
       ))}
+      {/* Side Drawer */}
+      <SideDrawer
+        open={drawerOpen}
+        match={selectedMatch}
+        onClose={() => setDrawerOpen(false)}
+      />
     </div>
   );
 }
