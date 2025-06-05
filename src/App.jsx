@@ -1,14 +1,14 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
 
-import { Outlet } from "react-router-dom";
-import Footer from "./components/Footer";
-
-export default function App() {
+function App() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <main className="flex-1 flex flex-col">
-        <Outlet />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
+    </Router>
   );
 }
+
+export default App;
